@@ -1,0 +1,1 @@
+* * * * * feh --bg-scale $(find wallpapers -type f ! -path '*/.git*' | shuf -n 1)

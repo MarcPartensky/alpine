@@ -1,0 +1,47 @@
+services:
+  base:
+    image: marcpartensky/alpine
+    build:
+      context: base
+    ports:
+      - "10022:22"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - cache:/var/cache/apk
+      - data:/home/marc/data
+
+  xorg:
+    image: marcpartensky/alpine:xorg
+    build:
+      context: xorg
+    environment:
+      DISPLAY: :1
+        # ipc: host
+        # privileged: true
+    user: $USER
+      # pid: host
+    volumes:
+      - /tmp/.X11-unix:/tmp/.X11-unix
+      - /tmp/.X1-lock:/tmp/.X1-lock
+      # - /tmp:/tmp
+      # devices:
+      # - /dev/dri
+      - cache:/var/cache/apk
+      - data:/home/marc/data
+
+  vnc:
+    image: marcpartensky/alpine:vnc
+    build:
+      context: vnc
+    # user: $USER
+    ports:
+      - "16080:6080"
+      - "15900:5900"
+    volumes:
+      # - /var/run/docker.sock:/var/run/docker.sock
+      - cache:/var/cache/apk
+      - data:/home/marc/data
+
+volumes:
+  cache:
+  data:
