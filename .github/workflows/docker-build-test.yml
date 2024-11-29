@@ -1,8 +1,8 @@
 name: Docker build test
 
 on:
-  schedule:
-  - cron: "0 4 * * *" # everyday at 4 am
+  # schedule:
+  # - cron: "0 4 * * *" # everyday at 4 am
   push:
     branches:
       - '*'         # matches every branch that doesn't contain a '/'
