@@ -38,6 +38,7 @@ ENV LANGUAGE fr_FR:fr
 
 USER marc
 ENV HOST docker
+ENV DIMENSIONS=1820x980
 
 WORKDIR /home/marc
 RUN mkdir git
